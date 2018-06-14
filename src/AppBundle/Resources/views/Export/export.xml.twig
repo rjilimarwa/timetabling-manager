@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<fet version="5.14.3">
+
+    <Institution_Name>Default institution</Institution_Name>
+
+    <Comments>Default comments</Comments>
+
+    <Hours_List>
+        <Number>12</Number>
+        <Name>08:00</Name>
+        <Name>09:00</Name>
+        <Name>10:00</Name>
+        <Name>11:00</Name>
+        <Name>12:00</Name>
+        <Name>13:00</Name>
+        <Name>14:00</Name>
+        <Name>15:00</Name>
+        <Name>16:00</Name>
+        <Name>17:00</Name>
+        <Name>18:00</Name>
+        <Name>19:00</Name>
+    </Hours_List>
+
+    <Days_List>
+        <Number>5</Number>
+        <Name>Monday</Name>
+        <Name>Tuesday</Name>
+        <Name>Wednesday</Name>
+        <Name>Thursday</Name>
+        <Name>Friday</Name>
+    </Days_List>
+
+    <Students_List>
+        {% for level in levels %}
+            <Year>
+                <Name>{{ level.name }}</Name>
+                <Number_of_Students>{{ level.studentsNumber }}</Number_of_Students>
+                {% for group in level.groups %}
+                    <Group>
+                        <Name>{{ group.name }}</Name>
+                        <Number_of_Students>{{ group.studentsNumber }}</Number_of_Students>
+                    </Group>
+                {% endfor %}
+            </Year>
+        {% endfor %}
+    </Students_List>
+
+    <Teachers_List>
+        {% for teacher in teachers %}
+            <Teacher>
+                <Name>{{ teacher.firstName }} {{ teacher.lastName }}</Name>
+            </Teacher>
+        {% endfor %}
+    </Teachers_List>
+
+    <Subjects_List>
+        {% for subject in subjects %}
+            <Subject>
+                <Name>{{ subject.name }}</Name>
+            </Subject>
+        {% endfor %}
+    </Subjects_List>
+
+    <Activity_Tags_List>
+        {% for activity in activities %}
+            <Activity_Tag>
+                <Name>{{ activity.code }}</Name>
+            </Activity_Tag>
+        {% endfor %}
+    </Activity_Tags_List>
+
+    <Activities_List>
+        {% for activity in activities %}
+            <Activity>
+                <Teacher>{{ activity.teacher.firstName|default('-') }} {{ activity.teacher.lastName|default('-') }}</Teacher>
+                <Subject>{{ activity.subject.name|e('html') }}</Subject>
+                <Activity_Tag>{{ activity.code }}</Activity_Tag>
+                <Duration>{{ activity.duration }}</Duration>
+                <Total_Duration>1</Total_Duration>
+                <Id>{{ activity.id }}</Id>
+                <Activity_Group_Id></Activity_Group_Id>
+                <Active>true</Active>
+                {% for group in activity.groups %}
+                    <Students>{{ group.name }}</Students>
+                {% endfor %}
+                {% for level in activity.levels %}
+                    <Students>{{ level.name|e('html') }}</Students>
+                {% endfor %}
+            </Activity>
+        {% endfor %}
+    </Activities_List>
+    <Buildings_List>
+    </Buildings_List>
+    <Rooms_List>
+        {% for room in rooms %}
+            <Room>
+                <Name>{{ room.name }}</Name>
+                <Building></Building>
+                <Capacity>{{ room.capacity }}</Capacity>
+            </Room>
+        {% endfor %}
+    </Rooms_List>
+    <Time_Constraints_List>
+        <ConstraintBasicCompulsoryTime>
+            <Weight_Percentage>100</Weight_Percentage>
+        </ConstraintBasicCompulsoryTime>
+    </Time_Constraints_List>
+    <Space_Constraints_List>
+        <ConstraintBasicCompulsorySpace>
+            <Weight_Percentage>100</Weight_Percentage>
+        </ConstraintBasicCompulsorySpace>
+    </Space_Constraints_List>
+
+</fet>

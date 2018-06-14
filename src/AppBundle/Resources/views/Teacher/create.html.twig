@@ -1,0 +1,12 @@
+{% extends 'AppBundle:Teacher:index.html.twig' %}
+{% block  breadcrumb %}
+    {{ parent() }}
+    <li class="active">
+        Créer
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">Créer</h1>
+    {{ include('AppBundle::form.html.twig', { 'form': form }) }}
+{% endblock %}

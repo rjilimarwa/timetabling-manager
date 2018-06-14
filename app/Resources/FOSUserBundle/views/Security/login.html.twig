@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container">
+        <form class="form-signin" role="form" action="{{ path("fos_user_security_check") }}" method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <span id="login-label"><i class="fa fa-fw fa-cogs"></i>FET Export</span>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            <div class="form-group">
+                <label for="username">{{ 'security.login.username'|trans }}</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            </div>
+            <div class="form-group">
+                <label for="password">{{ 'security.login.password'|trans }}</label>
+                <input class="form-control" type="password" id="password" name="_password" required="required" />
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        {{ 'security.login.remember_me'|trans }}
+                    </label>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-default" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            <button type="reset" class="btn btn-default">Annuler</button>
+        </form>
+
+    </div>
+
+{% endblock body %}

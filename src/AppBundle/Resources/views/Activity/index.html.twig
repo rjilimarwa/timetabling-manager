@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block  breadcrumb %}
+    <li class="active">
+        <a href="{{ path('activities_homepage') }}"><i class="fa fa-fw fa-tags"></i> Activités</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <div class=" pull-right">
+        <a href="{{ path('activities_create') }}" class="btn btn-primary"><span class="fa fa-plus" aria-hidden="true"></span>Créer</a>
+    </div>
+    <h2 class="page-header">Activités</h2>
+    {% if activities|length > 0 %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Intitulé</th>
+                    <th>Code</th>
+                    <th>Duration</th>
+                    <th>nombre par semaine</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.name }}</td>
+                        <td>{{ activity.code }}</td>
+                        <td>{{ activity.duration }}</td>
+                        <td>{{ activity.nbPerWeek }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">Aucune activité</div>
+    {% endif %}
+{% endblock %}

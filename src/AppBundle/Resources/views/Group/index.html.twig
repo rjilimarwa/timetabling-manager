@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block  breadcrumb %}
+    <li class="active">
+        <a href="{{ path('groups_homepage') }}"><i class="fa fa-fw fa-users"></i> Groupes</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <div class=" pull-right">
+        <a href="{{ path('groups_create') }}" class="btn btn-primary"><span class="fa fa-plus" aria-hidden="true"></span>Créer</a>
+    </div>
+    <h1 class="page-header">Groupes</h1>
+    <div class="row">
+    {% if groups|length > 0 %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Intitulé</th>
+                    <th>Nombre d'étudiants</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for group in groups %}
+                    <tr>
+                        <td>{{ group.name }}</td>
+                        <td>{{ group.studentsNumber }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">Aucun groupe</div>
+    {% endif %}
+{% endblock %}

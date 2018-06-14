@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block  breadcrumb %}
+    <li class="active">
+        <a href="{{ app.request.attributes.get('_route') }}"><i class="fa fa-fw fa-cogs"></i>Export FET</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">
+    Export FET
+    </h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Exporter" class="btn btn-default pull-right" />
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block  breadcrumb %}
+    <li class="active">
+        <a href="{{ path(app.request.attributes.get('_route')) }}"><i class="fa fa-fw fa-bars"></i> Planning enseignants</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">Enseignants</h1>
+    <div class="row">
+        {% if teachers|length > 0 %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>CIN</th>
+                        <th>Tél</th>
+                        <th>Email</th>
+                        <th>Adresse</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for teacher in teachers %}
+                        <tr>
+                            <td>{{ teacher.lastName }}</td>
+                            <td>{{ teacher.firstName }}</td>
+                            <td>{{ teacher.cin }}</td>
+                            <td>{{ teacher.tel }}</td>
+                            <td>{{ teacher.email }}</td>
+                            <td>{{ teacher.address }}</td>
+                            <td style="text-align: center"><a href="{{ path('planning_show', {id: teacher.id}) }}"><i class="fa fa-eye " aria-hidden="true"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info">Aucun enseignant</div>
+        {% endif %}
+    </div>
+{% endblock %}
