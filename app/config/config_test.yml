@@ -21,3 +21,7 @@ security:
             http_basic: true
             logout:       true
             anonymous:    true
+
+doctrine:
+    dbal:
+        dbname: '%database_name%_test'
